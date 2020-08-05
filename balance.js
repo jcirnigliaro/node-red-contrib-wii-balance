@@ -10,11 +10,7 @@ module.exports = function(RED) {
         balance.connect();
 
         balance.on("data", function(data) {
-            if(data.connected && (
-               data.topLeft >= 1 ||
-               data.topRight >= 1 ||
-               data.bottomLeft >= 1 ||
-               data.bottomRight >= 1 )) {
+            if(data.connected) {
                 var msg = {'topic': node.topic};
                 msg.payload = data;
                 node.send(msg);
